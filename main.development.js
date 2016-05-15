@@ -22,21 +22,17 @@ app.on('ready', () => {
     width: 1024,
     height: 728
   });
-
   mainWindow.loadURL(`file://${__dirname}/app/app.html`);
 
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show();
     mainWindow.focus();
+    mainWindow.maximize();
   });
 
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
-
-  if (process.env.NODE_ENV === 'development') {
-    mainWindow.openDevTools();
-  }
 
   if (process.platform === 'darwin') {
     template = [{
@@ -237,4 +233,5 @@ app.on('ready', () => {
     menu = Menu.buildFromTemplate(template);
     mainWindow.setMenu(menu);
   }
+
 });
