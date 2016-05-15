@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-
+import style from '../assets/master.scss';
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired
