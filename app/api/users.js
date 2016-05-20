@@ -2,15 +2,19 @@
 "use strict";
 
 const mysql      = require('mysql');
+const credentials = require('./credentials');
+
+// {
+// 	host : 'localhost',
+// 	user : 'root',
+// 	password : '*********',
+// 	database : '**********'
+// }
+
 let api = {};
 api.getUsers = () => {
 
-	let connection = mysql.createConnection({
-	  host     : 'localhost',
-	  user     : 'root',
-	  password : '21251122',
-	  database : 'nb_inventory'
-	});
+	let connection = mysql.createConnection(credentials);
 	connection.connect();
 	let promise = new Promise((resolve, reject) => {
 		connection.query('select * from users', (err, rows, fields) => {
@@ -35,12 +39,7 @@ api.getUsers = () => {
 
 api.getUserByEmail = (email) => {
 	email = typeof email !== 'undefined' ? email : "";
-	let connection = mysql.createConnection({
-	  host     : 'localhost',
-	  user     : 'root',
-	  password : '21251122',
-	  database : 'nb_inventory'
-	});
+	let connection = mysql.createConnection(credentials);
 	connection.connect();
 
 	let promise = new Promise((resolve, reject) => {
