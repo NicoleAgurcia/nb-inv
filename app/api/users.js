@@ -1,3 +1,4 @@
+
 "use strict";
 
 const mysql      = require('mysql');
@@ -8,13 +9,12 @@ api.getUsers = () => {
 	  host     : 'localhost',
 	  user     : 'root',
 	  password : '21251122',
-	  database : 'BNR'
+	  database : 'nb_inventory'
 	});
 	connection.connect();
 	let promise = new Promise((resolve, reject) => {
 		connection.query('select * from users', (err, rows, fields) => {
 		let response = {};
-
 
 		 if (err){
 		 	response.status = -1;
@@ -23,11 +23,43 @@ api.getUsers = () => {
 		 }
 		 response.status = 1;
 		 response.data = rows.map(row => {
-		 	return {username : row.name, email: row.email, id: row.use_id}
+		 	return {username : row.name, email: row.email, id: row.user_id}
 		 });
 		 resolve(response);
 		 connection.end();
 
+		});
+	});
+	return promise;
+}
+
+api.getUserByEmail = (email) => {
+	email = typeof email !== 'undefined' ? email : "";
+	let connection = mysql.createConnection({
+	  host     : 'localhost',
+	  user     : 'root',
+	  password : '21251122',
+	  database : 'nb_inventory'
+	});
+	connection.connect();
+
+	let promise = new Promise((resolve, reject) => {
+
+		connection.query(' SELECT * FROM nb_inventory.users where email = "' + email + '"' , (err, rows, fields) => {
+		let response = {};
+		 if (err || email == ""){
+
+		 	response.status = -1;
+		 	response.message = email == "" ? "No email provided" : err;
+		 	reject(response);
+		 }else{
+		 	response.status = 1;
+		 	response.data = rows.map(row => {
+		 		return {username : row.name, email: row.email, id: row.user_id}
+		 	});
+		 	resolve(response);
+		 }
+		 connection.end();
 		});
 	});
 	return promise;
