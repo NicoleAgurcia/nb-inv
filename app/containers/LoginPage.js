@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import * as CounterActions from '../actions/counter';
 import LoginForm from '../components/LoginForm';
 
+
 class LoginPage extends React.Component {
   static propTypes = {
     name: React.PropTypes.string,
@@ -17,9 +18,17 @@ class LoginPage extends React.Component {
 
   render() {
     return (
-      <LoginForm
-      {...this.props}
-      />
+      <div className="loginPage">
+        <div className="top" />
+        <Link className="pa" to="/">
+              <i className="fa fa-arrow-left fa-3x" />
+        </Link>
+        <div className="content">
+          <div className="form-wrapper">
+            <LoginForm {...this.props} />
+          </div>
+        </div>
+      </div>
     );
   }
 }
