@@ -17,7 +17,6 @@ class LoginPage extends React.Component {
 
   render() {
     return (
-      <div className="row"></div>
       <LoginForm
       {...this.props}
       />
