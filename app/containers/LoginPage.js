@@ -1,12 +1,10 @@
 import React from 'react';
 import * as LoginActions from '../actions/login';
 import { Link } from 'react-router';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
-
 import * as CounterActions from '../actions/counter';
+import LoginForm from '../components/LoginForm';
 
 class LoginPage extends React.Component {
   static propTypes = {
@@ -18,24 +16,11 @@ class LoginPage extends React.Component {
   }
 
   render() {
-    const {logIn, logOut} = this.props;
-    console.log(this.props);
     return (
-      <div>
-        <div>LoginPage</div>
-          <Link to="/">
-            <i className="fa fa-arrow-left fa-3x" />
-          </Link>
-          <input 
-            ref={(node) => this.input = node}
-          />
-          <button  onClick={() => logIn(this.input.value)}>
-              Log In
-          </button>
-          <button  onClick={logOut}>
-              Log Out
-          </button>
-      </div>
+      <div className="row"></div>
+      <LoginForm
+      {...this.props}
+      />
     );
   }
 }
