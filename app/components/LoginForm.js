@@ -26,7 +26,6 @@ const passwordStyle = {
   marginBottom: "3rem"
 }
 
-
 export default class Login extends React.Component {
   static propTypes = {
     logIn: PropTypes.func.isRequired,
@@ -37,9 +36,14 @@ export default class Login extends React.Component {
     super(props);
     this.state = {username: "", password: ""};
   }
+
+  handleSubmit(){
+    this.props.waitAuthentication(this.state.username,this.state.password);
+    this.props.authenticate(this.state.username,this.state.password);
+  }
+
   render() {
-  	const { logIn} = this.props;
-    console.log(this.state);
+  	const {authenticate, waitAuthentication} = this.props;
     return (
       <div className="loginForm">
           <Paper style ={paperStyle} zDepth={3}>
@@ -49,7 +53,7 @@ export default class Login extends React.Component {
               style = {inputStyle}
               onChange = { e => this.setState({username: e.target.value})}
             />
-            
+
             <TextField
               hintText="**********"
               floatingLabelText="Contrasena"
@@ -59,8 +63,8 @@ export default class Login extends React.Component {
               onChange = { e => this.setState({password: e.target.value})}
             />
 
-            <RaisedButton label="Login" secondary="true" 
-                          onClick={() => logIn(this.state.username)}
+            <RaisedButton label="Login" secondary="true"
+                          onClick={() => this.handleSubmit()}
                           style = {loginStyle}
             />
           </Paper>

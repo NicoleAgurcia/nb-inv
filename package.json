@@ -97,9 +97,11 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
+    "bookshelf": "^0.9.5",
     "css-modules-require-hook": "^4.0.0",
     "electron-debug": "^0.6.0",
     "font-awesome": "^4.6.1",
+    "knex": "^0.11.4",
     "material-ui": "^0.15.0",
     "mysql": "^2.10.2",
     "postcss": "^5.0.19",

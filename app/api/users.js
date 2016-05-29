@@ -1,67 +1,61 @@
-
 "use strict";
 
-const mysql      = require('mysql');
-const credentials = require('./credentials');
-
-// {
-// 	host : 'localhost',
-// 	user : 'root',
-// 	password : '*********',
-// 	database : '**********'
-// }
-
+let User = require('./models/User');
 let api = {};
+
+const getUserData = (user) => {
+	return {
+		'username' : user.attributes.name,
+		'email' : user.attributes.email,
+		'password': user.attributes.password,
+		'id' : user.attributes.user_id
+	};
+}
+
 api.getUsers = () => {
-
-	let connection = mysql.createConnection(credentials);
-	connection.connect();
-	let promise = new Promise((resolve, reject) => {
-		connection.query('select * from users', (err, rows, fields) => {
-		let response = {};
-
-		 if (err){
-		 	response.status = -1;
-		 	response.message = err;
-		 	reject(response);
-		 }
-		 response.status = 1;
-		 response.data = rows.map(row => {
-		 	return {username : row.name, email: row.email, id: row.user_id}
+	let response = {};
+	let promise  = new Promise( (resolve, reject) => {
+		 User.fetchAll().then( users => {
+		 		try {
+			 		response.data = users.map(getUserData);
+		 			response.status = 1;
+		 			resolve(response);
+		 		}
+		 		catch(err){
+		 			response.status = 0;
+		 			response.message= 'Error fetching data';
+		 			reject(response);
+		 		}
 		 });
-		 resolve(response);
-		 connection.end();
-
-		});
 	});
 	return promise;
 }
 
 api.getUserByEmail = (email) => {
-	email = typeof email !== 'undefined' ? email : "";
-	let connection = mysql.createConnection(credentials);
-	connection.connect();
 
-	let promise = new Promise((resolve, reject) => {
+	let response = {};
+	let promise  = new Promise( (resolve, reject) => {
+		api.getUsers().then(usersResponse => {
+			response.data = usersResponse.data.filter(user => user.email == email)
+			response.status = 1;
+			resolve(response);
+		}).catch(response => reject(response));
+	});
+	return promise;
+}
 
-		connection.query(' SELECT * FROM nb_inventory.users where email = "' + email + '"' , (err, rows, fields) => {
-		let response = {};
-		 if (err || email == ""){
+api.getUserByUsername = (username) => {
 
-		 	response.status = -1;
-		 	response.message = email == "" ? "No email provided" : err;
-		 	reject(response);
-		 }else{
-		 	response.status = 1;
-		 	response.data = rows.map(row => {
-		 		return {username : row.name, email: row.email, id: row.user_id}
-		 	});
-		 	resolve(response);
-		 }
-		 connection.end();
+	let response = {};
+	let promise  = new Promise( (resolve, reject) => {
+		api.getUsers().then(usersResponse => {
+			response.data = usersResponse.data.filter(user => user.username == username)
+			response.status = 1;
+			resolve(response);
 		});
 	});
 	return promise;
 }
+
 
 module.exports = api;
