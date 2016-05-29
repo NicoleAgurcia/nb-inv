@@ -36,7 +36,6 @@ export function haltWait(response){
 export function authenticate(username = '', password = '') {
   return dispatch => {
     loginApi.authenticate(username,password).then(response => {
-    	console.log('authenticate checkpoint');
     	if(response.data.code)
     		dispatch(logIn(username));
     	dispatch(haltWait(response));

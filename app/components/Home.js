@@ -12,6 +12,8 @@ export default class Home extends Component {
           <Link to="/counter">to Counter</Link>
           <br/>
           <Link to="/login">to Login</Link>
+          <br/>
+          <Link to="/inventory">to Inventory</Link>
         </div>
       </div>
     );

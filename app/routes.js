@@ -5,12 +5,13 @@ import HomePage from './containers/HomePage';
 import CounterPage from './containers/CounterPage';
 import LoginPage from './containers/LoginPage';
 
-// import InventoryPage from './containers/InventoryPage';
+import InventoryPage from './containers/InventoryPage';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage} />
     <Route path="/counter" component={CounterPage} />
     <Route path="/login" component={LoginPage} />
+    <Route path="/inventory" component={InventoryPage} />
   </Route>
 );
