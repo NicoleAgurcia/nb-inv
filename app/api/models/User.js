@@ -1,4 +1,4 @@
-"user strict";
+"use strict";
 const bookshelf = require('../config/dbconfig');
 const User = bookshelf.Model.extend({
   tableName: 'users'

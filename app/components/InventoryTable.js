@@ -3,7 +3,7 @@ import React from 'react';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 
-
+//const pro = require('./products');
 const tableStyle = {
 	"width" : "30rem"
 }
@@ -25,54 +25,6 @@ const data = {
 			"category": "Godly",
 			"quantity": 1,
 			"maxPrice": "500$"
-		},
-		{
-			"name": "Hydra Shield",
-			"category": "UNGH",
-			"quantity": 1,
-			"maxPrice": "300$"
-		},
-		{
-			"name": "Hammer of Thor",
-			"category": "Godly",
-			"quantity": 1,
-			"maxPrice": "500$"
-		},
-		{
-			"name": "Hydra Shield",
-			"category": "UNGH",
-			"quantity": 1,
-			"maxPrice": "300$"
-		},
-		{
-			"name": "Hammer of Thor",
-			"category": "Godly",
-			"quantity": 1,
-			"maxPrice": "500$"
-		},
-		{
-			"name": "Hydra Shield",
-			"category": "UNGH",
-			"quantity": 1,
-			"maxPrice": "300$"
-		},
-		{
-			"name": "Hammer of Thor",
-			"category": "Godly",
-			"quantity": 1,
-			"maxPrice": "500$"
-		},
-		{
-			"name": "Hydra Shield",
-			"category": "UNGH",
-			"quantity": 1,
-			"maxPrice": "300$"
-		},
-		{
-			"name": "Iron Suit",
-			"category": "Stark",
-			"quantity": 1,
-			"maxPrice": "200$"
 		}
 	]
 }
@@ -122,5 +74,3 @@ export default class InventoryTable extends React.Component {
     );
   }
 }
-
-
