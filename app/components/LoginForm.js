@@ -45,9 +45,9 @@ export default class Login extends React.Component {
   render() {
   	const {authenticate, waitAuthentication, history, loggedIn} = this.props;
 
-
     if(loggedIn)
       history.push('/inventory');
+
     return (
       <div className="loginForm">
           <Paper style ={paperStyle} zDepth={3}>
@@ -67,7 +67,7 @@ export default class Login extends React.Component {
               onChange = { e => this.setState({password: e.target.value})}
             />
 
-            <RaisedButton label="Login" secondary="true"
+            <RaisedButton label="Login" secondary={true}
                           onClick={() => this.handleSubmit()}
                           style = {loginStyle}
             />

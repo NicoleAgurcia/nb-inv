@@ -1,9 +1,16 @@
+//react
 import React from 'react';
 import { Link } from 'react-router';
 
-import InventoryTable from '../components/InventoryTable'
+//redux
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-export default class InventoryPage extends React.Component {
+//Inventory
+import InventoryTable from '../components/InventoryTable'
+import * as InventoryActions from '../actions/inventory';
+
+class InventoryPage extends React.Component {
   static propTypes = {
     name: React.PropTypes.string,
   };
@@ -20,9 +27,21 @@ export default class InventoryPage extends React.Component {
               <i className="fa fa-arrow-left fa-3x" />
         </Link>
         <div className="inv-wrapper">
-            <InventoryTable/>
+            <InventoryTable {...this.props}/>
         </div>
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    ...state.inventory
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(InventoryActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryPage);

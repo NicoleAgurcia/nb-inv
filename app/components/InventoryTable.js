@@ -1,56 +1,36 @@
+//react
 import React from 'react';
 
+//material-ui
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 
-//const pro = require('./products');
-const tableStyle = {
-	"width" : "30rem"
-}
+const tableStyle = { "width" : "30rem" }
+const paperStyle = { "padding" : "1rem 0rem" }
 
-const paperStyle = {
-	"padding" : "1rem 0rem"
-}
-
-const data = {
-	"products" :[
-		{
-			"name": "Hammer of Thor",
-			"category": "Godly",
-			"quantity": 1,
-			"maxPrice": "500$"
-		},
-		{
-			"name": "Hammer of Thor",
-			"category": "Godly",
-			"quantity": 1,
-			"maxPrice": "500$"
-		}
-	]
-}
-
-// const Product  =  ({
-// 	name = "default",
-// 	quantity = 0,
-// 	maxPrice = 0,
-// 	category = "default"
-// }) => (
-
-// );
+const Product  = (product) => (
+	<TableRow>
+	    <TableRowColumn>{product.name}</TableRowColumn>
+        <TableRowColumn>{product.category}</TableRowColumn>
+        <TableRowColumn>{product.quantity}</TableRowColumn>
+        <TableRowColumn>{product.maxPrice}</TableRowColumn>
+	</TableRow>
+);
 
 export default class InventoryTable extends React.Component {
-  static propTypes = {
-    name: React.PropTypes.string,
-  };
-
   constructor(props) {
     super(props);
   }
 
   render() {
+    const {fresh, fetchProducts, products} = this.props;
+
+    if(!fresh)
+    	fetchProducts();
+
     return (
       <Paper className="paper" zDepth={3} style = {paperStyle}>
-			<Table height={30 * data.products.length}>
+			<Table height={'50rem'}>
 				<TableHeader>
 					<TableRow>
 						<TableHeaderColumn>Nombre</TableHeaderColumn>
@@ -60,14 +40,7 @@ export default class InventoryTable extends React.Component {
 					</TableRow>
 				</TableHeader>
 				<TableBody showRowHover={true}>
-					{data.products.map((product => (
-						<TableRow>
-					        <TableRowColumn>{product.name}</TableRowColumn>
-					        <TableRowColumn>{product.category}</TableRowColumn>
-					        <TableRowColumn>{product.quantity}</TableRowColumn>
-					        <TableRowColumn>{product.maxPrice}</TableRowColumn>
-						</TableRow>
-					)))}
+					{products.map(Product)}
 				</TableBody>
 			</Table>
       </Paper>

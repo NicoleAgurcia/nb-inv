@@ -1,9 +1,13 @@
+// react
 import React from 'react';
-import * as LoginActions from '../actions/login';
 import { Link } from 'react-router';
+
+//redux
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as CounterActions from '../actions/counter';
+
+//login
+import * as LoginActions from '../actions/login';
 import LoginForm from '../components/LoginForm';
 
 

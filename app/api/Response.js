@@ -1,9 +1,9 @@
 "use strict";
 class Response {
-  constructor() {
-    this.status  = 0;
-    this.data    = {};
-    this.message = "";
+  constructor(status, data, message){
+  	this.status  = status;
+  	this.data    = data;
+  	this.message = message
   }
 }
 
