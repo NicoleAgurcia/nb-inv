@@ -43,7 +43,11 @@ export default class Login extends React.Component {
   }
 
   render() {
-  	const {authenticate, waitAuthentication} = this.props;
+  	const {authenticate, waitAuthentication, history, loggedIn} = this.props;
+
+
+    if(loggedIn)
+      history.push('/inventory');
     return (
       <div className="loginForm">
           <Paper style ={paperStyle} zDepth={3}>
@@ -72,12 +76,3 @@ export default class Login extends React.Component {
     );
   }
 }
-
-
-// <input
-//               ref={(node) => this.username = node}
-//             />
-
-            // <input
-            //   ref={(node) => this.password = node}
-            // />
