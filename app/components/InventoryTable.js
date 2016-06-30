@@ -14,8 +14,8 @@ import  InventoryRow from './InventoryRow';
 
 const tableStyle = { "width" : "50rem" }
 const paperStyle = { "padding" : "1rem 0rem" }
-
 const mapRow = (product) => (<InventoryRow {...product}/>)
+let centered = {"textAlign": "center"}
 
 export default class InventoryTable extends React.Component {
   constructor(props) {
@@ -30,18 +30,18 @@ export default class InventoryTable extends React.Component {
 
     return (
       <Paper className="paper" zDepth={3} style = {paperStyle}>
-			<Table height={'50rem'}>
+			<Table height={'50rem'} showRowHover={true} displayRowCheckbox={true}>
 				<TableHeader>
 					<TableRow>
 						<TableHeaderColumn>Nombre</TableHeaderColumn>
-						<TableHeaderColumn>Categoria</TableHeaderColumn>
-						<TableHeaderColumn>Cantidad</TableHeaderColumn>
-						<TableHeaderColumn>Precio Maximo</TableHeaderColumn>
+						<TableHeaderColumn style={centered}>Categoria</TableHeaderColumn>
+						<TableHeaderColumn style={centered}>Cantidad</TableHeaderColumn>
+						<TableHeaderColumn style={centered}>Precio Maximo</TableHeaderColumn>
 					    <TableHeaderColumn>Modificar</TableHeaderColumn>
 					    <TableHeaderColumn>Remover</TableHeaderColumn>
 					    <TableHeaderColumn>Inspeccionar</TableHeaderColumn>
-					    <TableHeaderColumn>Dialog</TableHeaderColumn>
 					</TableRow>
+
 				</TableHeader>
 				<TableBody showRowHover={true}>
 					{products.map(mapRow)}
