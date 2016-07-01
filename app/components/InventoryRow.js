@@ -12,17 +12,17 @@ import Checkbox from 'material-ui/Checkbox';
 
 let centered = {"textAlign": "center"}
 let checkboxStyle = {"width": "2rem"}
+
 export default class InventoryTable extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const {name, category, quantity, maxPrice, otherProps} = this.props;
-    console.log(this.props);
+    const {name, category, quantity, maxPrice, ...otherProps} = this.props;
     return (
-      <TableRow hoverable={true}>
-      		<TableRowColumn  style={checkboxStyle}> <Checkbox selected={true}/> </TableRowColumn>
+      <TableRow  {...otherProps}>
+      		{otherProps.children[0]}
 		    <TableRowColumn  >{name}</TableRowColumn>
 	        <TableRowColumn  style={centered}>{category}</TableRowColumn>
 	        <TableRowColumn  style={centered}>{quantity}</TableRowColumn>
@@ -38,9 +38,9 @@ export default class InventoryTable extends React.Component {
 	        	</IconButton>
 	        </TableRowColumn>
 	        <TableRowColumn>
-	            		<IconButton >
-		    	<FontIcon className="fa fa-search"  hoverColor={blue500}/>
-		    </IconButton>
+		        <IconButton >
+			    	<FontIcon className="fa fa-search"  hoverColor={blue500}/>
+			    </IconButton>
 	        </TableRowColumn>
 		</TableRow>
     );
