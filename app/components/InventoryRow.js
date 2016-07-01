@@ -19,7 +19,7 @@ export default class InventoryTable extends React.Component {
   }
 
   render() {
-    const {name, category, quantity, maxPrice, ...otherProps} = this.props;
+    const {name, category, quantity, maxPrice, minPrice, ...otherProps, openInspectDialog, closeInspectDialog} = this.props;
     return (
       <TableRow  {...otherProps}>
       		{otherProps.children[0]}
@@ -38,7 +38,7 @@ export default class InventoryTable extends React.Component {
 	        	</IconButton>
 	        </TableRowColumn>
 	        <TableRowColumn>
-		        <IconButton >
+		        <IconButton onMouseUp = {() => openInspectDialog({name,category,quantity,maxPrice, minPrice})}>
 			    	<FontIcon className="fa fa-search"  hoverColor={blue500}/>
 			    </IconButton>
 	        </TableRowColumn>

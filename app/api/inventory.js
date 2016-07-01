@@ -9,7 +9,8 @@ const getProductData= (Product) => {
 		'name'     : Product.attributes.name,
 		'category' : Product.attributes.category_id,
 		'quantity' : Product.attributes.cant,
-		'maxPrice' : Product.attributes.price_max
+		'maxPrice' : Product.attributes.price_max,
+		'minPrice' : Product.attributes.price_min
 	};
 }
 
